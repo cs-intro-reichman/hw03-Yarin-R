@@ -11,6 +11,10 @@ public class LoanCalc {
      * Expects to get three command-line arguments: sum of the loan (double),
      * interest rate (double, as a percentage), and number of payments (int).  
      */
+
+	// main(string[]) - the entry point of a Java program.
+    // args - args contains the supplied command-line
+    // arguments as an array of String objects.
 	public static void main(String[] args) {		
 		// Gets the loan data
 		double loan = Double.parseDouble(args[0]);
@@ -38,9 +42,19 @@ public class LoanCalc {
 	* the number of periods (n), and epsilon, a tolerance level.
 	*/
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+
+	// bruteForceSolver - search for the ideal Periodical payment using the brute force search methood.
+    public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
+		// declaring a first gueass bigger the n 0 for the implementation of the brute force search methood.
+    	double guess = loan / n;
+		// reseting the value of the flobal variable that counts the iterations of each search methood to 0.
+		iterationCounter = 0;
+		// implementation of the brute force search methood.
+		while (endBalance(loan, rate, n, guess) >= 0) {
+			guess += epsilon;
+			iterationCounter++;
+		}
+    	return guess;
     }
     
     /**
@@ -50,17 +64,43 @@ public class LoanCalc {
 	* the number of periods (n), and epsilon, a tolerance level.
 	*/
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+
+	// bisectionSolver - search for the ideal Periodical payment using the bisection search methood.
+    public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
+		// declaring H, L and M values for the implementation of the bisection search methood.
+    	double low = 0.0;
+		double high = loan;
+		double middle = (high + low) / 2;
+		// reseting the value of the flobal variable that counts the iterations of each search methood to 0.
+		iterationCounter = 0;
+		// implementation of the bisection search methood.
+		while ((high - low) > epsilon) {
+			if ((endBalance(loan, rate, n, middle) * endBalance(loan, rate, n, low)) > 0) {
+				low = middle;
+			}
+			else{
+				high = middle;
+			}
+			middle = (high + low) / 2;
+			iterationCounter++;
+		}
+    	return middle;
     }
 	
 	/**
 	* Computes the ending balance of a loan, given the sum of the loan, the periodical
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
+
+	// endBalance - calculate the n'th period's balance by loan, rate, periods and payment
+	// according to the excel's calculations.
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
-    	return 0;
+		// declaring the last balance variable starting from loan downwards.
+		double bal = loan;
+		for (int i = 0; i < n; i++) {
+			// calculating the next period's balance as the excel does.
+			bal = (bal - payment) * (1 + rate/100);
+		}
+    	return bal;
 	}
 }
