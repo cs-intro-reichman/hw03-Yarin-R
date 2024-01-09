@@ -21,8 +21,10 @@ public class Calendar {
 		// Advances the date and the day-of-the-week from 1/1/1900 till 31/12/1999, inclusive.
 	    // Prints each date dd/mm/yyyy in a separate line. If the day is a Sunday, prints "Sunday".
 	    // The following variable, used for debugging purposes, counts how many days were advanced so far.
+		int debugDaysCounter = 0;
 		int inputYear = Integer.parseInt(args[0]);
 		int yearDays = 0;
+		// check if the selected year is a leap year using the function.
 		if (isLeapYear(inputYear)) {
 			yearDays = 366;
 		}
@@ -30,11 +32,10 @@ public class Calendar {
 			yearDays = 365;
 		}
 
+		// advance until we get to the selected year to make sure we mention each sunday.
 		while (year != inputYear) {
 			advance();
 		}
-
-		int debugDaysCounter = 0;
 
 	    //// Write the necessary initialization code, and replace the condition
 	    //// of the while loop with the necessary condition 
