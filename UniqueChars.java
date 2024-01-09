@@ -1,5 +1,5 @@
 /** String processing exercise 2. */
-public class uniquechars {
+public class UniqueChars {
     // main(string[]) - the entry point of a Java program.
     // args - args contains the supplied command-line
     // arguments as an array of String objects.
