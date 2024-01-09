@@ -23,7 +23,7 @@ public class Calendar {
         year = Integer.parseInt(args[0]);
 	    //// Write the necessary initialization code, and replace the condition
 	    //// of the while loop with the necessary condition 
-		while (debugDaysCounter < 365) {
+		while (debugDaysCounter <= 365) {
 			System.out.println(dayOfMonth + "/" + month + "/" + year);
 			advance();
 			debugDaysCounter++;
