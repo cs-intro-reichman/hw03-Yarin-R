@@ -1,5 +1,5 @@
 /** String processing exercise 1. */
-public class LowerCase {
+public class lowercase {
     // main(string[]) - the entry point of a Java program.
     // args - args contains the supplied command-line
     // arguments as an array of String objects.
